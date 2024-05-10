@@ -1,6 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-using gigas.RegEdit;
-using gigas.Worms;
+﻿// from peroxidee.global
+// stream i.luv.werewolves
+// trans rights
 
 namespace gigas;
 
