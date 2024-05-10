@@ -39,7 +39,9 @@ public class Worms
                     IPEndPoint edp = new IPEndPoint(nadr, 135);
                     if (await tcl.Connect(edp))
                     {
-                        
+                        // to do :
+                        // add functionality to download itself to other computers
+                        // fix errors here
                     }
 
                 }
