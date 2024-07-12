@@ -8,7 +8,13 @@ using System.Net.Sockets;
 
 public class Worms
 {
-    public static async Task Def(string[] args)
+
+    public static async void Entrypoint()
+    {
+        await Def();
+    }
+    
+    private static async Task Def()
     {
         List<string> addrs = new List<string>();
         string baseip = "192.168.1.";

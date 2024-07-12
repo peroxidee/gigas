@@ -15,7 +15,7 @@ namespace gigas{
     public class RegEdit
     {
 
-        static void Write(string[] args)
+        public static void Write()
         {
             
             
