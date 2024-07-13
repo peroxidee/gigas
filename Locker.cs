@@ -1,4 +1,6 @@
-﻿namespace gigas;
+﻿System.Windows.Forms;
+
+namespace gigas;
 
 public class Locker
 {

