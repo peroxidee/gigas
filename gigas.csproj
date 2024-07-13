@@ -7,4 +7,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="System.Windows.Forms">
+        <HintPath>..\..\..\..\Windows\WinSxS\msil_system.windows.forms_b77a5c561934e089_10.0.22621.1_none_ccdf603a040dfd9f\System.Windows.Forms.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
