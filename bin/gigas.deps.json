@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "gigas/1.0.0": {
+        "dependencies": {
+          "System.Windows.Forms": "2.0.0.0"
+        },
+        "runtime": {
+          "gigas.dll": {}
+        }
+      },
+      "System.Windows.Forms/2.0.0.0": {
+        "runtime": {
+          "System.Windows.Forms.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.50727.9157"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "gigas/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Windows.Forms/2.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
