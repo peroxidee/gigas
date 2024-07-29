@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Microsoft.SqlServer.Management.Utility;
 
 namespace gigas;
 
@@ -12,7 +13,7 @@ public class Cookie
         string usr = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         
         string dbp = usr + "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cookies";
-        String currurl = HttpContext.Current.Request.RawUrl;
+        Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase(this.connectionString);       
         String querystring = null;
         
         // psudeo code to impl later
