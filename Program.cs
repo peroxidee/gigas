@@ -9,6 +9,9 @@ public class Program
       public static  void  Main(string[] args)
     {
 
+      // bec08050e450203e1e130ef60828e902429615c4629c1faa45406df7a8eca16289bdff443fbcf0e1664e85fac7d32ee344a63370b8d14853ac69a19ad36d7979
+      // hack the planet bb 
+
         Console.WriteLine("  ,--,   ,-.  ,--,     .--.     .---. ");
         Console.WriteLine(".' .'    |(|.' .'     / /\\ \\   ( .-._)");
         Console.WriteLine("|  |  __ (_)|  |  __ / /__\\ \\ (_) \\   ");
