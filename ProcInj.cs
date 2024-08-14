@@ -6,7 +6,9 @@ namespace gigas;
 
 public class ProcInj
 {
-
+    
+   
+    
     [DllImport("ntdll.dll", SetLastError=true, ExactSpelling=true)]
     static extern IntPtr NtAllocateVirtualMemory(IntPtr ProcessHandle, IntPtr BaseAddress, uint ZeroBits,
         IntPtr RegionSize, uint AllocationType, uint Protect);

