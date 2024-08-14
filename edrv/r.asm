@@ -16,6 +16,23 @@ includelib \masm32\lib\user32.lib
 ; Data section can be defined here
 
 .code
+  NtCreateThreadEx Proc
+    mov r10, rcx
+    mov eax, 0x00c7 
+    syscall
+    ret
+  NtCreateThreadEx ENDP
+  
+END NtCreateThreadEx
+
+  NtWriteVirtualMemory Proc
+    mov r10, rcx
+    mov eax, 0x003a  
+    syscall
+    ret
+  NtWriteVirtualMemory ENDP
+  
+END NtWriteVirtualMemory
   NtAllocateVirtualMemory PROC
     mov r10, rcx
     mov eax, 0018h
